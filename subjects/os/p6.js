@@ -7,11 +7,8 @@ router.get("/", (req, res) => {
   const codeString = `
 //REVERSE, EMAIL , URL
 
-
-
-
-  //reverse
-  #!/bin/bash
+//REVERSE
+#!/bin/bash
 
 echo "Enter a number:"
 read num
@@ -28,7 +25,7 @@ echo "Reversed Number: $reverse"
 
 
 
-//url and email
+//EMAIL AND URL
 #!/bin/bash
 
 is_valid_email() {

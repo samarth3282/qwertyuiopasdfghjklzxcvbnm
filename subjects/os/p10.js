@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   const codeString = `
 //THREAD
 
-  #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 

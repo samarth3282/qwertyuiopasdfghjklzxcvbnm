@@ -5,8 +5,8 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-  //fcfs
-  #include <stdio.h>
+//FCFS
+#include <stdio.h>
 
 struct Process {
     int id;     

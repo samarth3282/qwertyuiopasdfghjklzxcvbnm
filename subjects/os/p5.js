@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   const codeString = `
   
-//database
+//DBMS
 #!/bin/bash
 
 create_database() {
@@ -247,11 +247,6 @@ while true; do
         ;;
     esac
 done
-
-
-
-
-
 
   `;
   res.json({ code: codeString });

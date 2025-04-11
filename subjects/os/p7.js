@@ -7,8 +7,8 @@ router.get("/", (req, res) => {
   const codeString = `
 //HEAD , TAIL
 
-  //head
-  #!/bin/bash
+//HEAD
+#!/bin/bash
 
 num_lines=10
 num_bytes=0
@@ -85,7 +85,7 @@ fi
 
 
 
-//tail
+//TAIL
 #!/bin/bash
 
 LINES=10

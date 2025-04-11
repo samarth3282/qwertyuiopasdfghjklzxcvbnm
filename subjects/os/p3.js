@@ -60,13 +60,8 @@ echo "Data saved in $file"s
 
 
 //COMPARE FILE
-echo "Comparing file1.txt and file2.txt:"
-if cmp file1.txt file2.txt
-then
-echo "They are similar"
-else
-echo "They are different"
-fi
+diff "$1" "$2" && echo "Files are Identical!" || echo "Files are Different!"
+
 
   `;
   res.json({ code: codeString });
