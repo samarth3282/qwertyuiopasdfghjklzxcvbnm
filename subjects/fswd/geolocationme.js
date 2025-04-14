@@ -13,6 +13,67 @@ router.get("/", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geolocation API</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #f4f4f4;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            height: 300px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header img {
+            height: 50px;
+            width: auto;
+        }
+
+        header h1 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .container .content button {
+            border: none;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+            border-radius: 5px;
+        }
+
+        .container .content button:hover {
+            transform: translateY(-5px);
+            background-color: #0056b3;
+        }
+
+        p{
+            font-size: 18px;
+            margin-top: 15px;
+            color: #444;
+        }
+    </style>
 </head>
 
 <body>

@@ -1,8 +1,6 @@
-// server.js
 const express = require("express");
 const app = express();
 
-// Import routers for different subjects/routes
 const os_p1 = require("./subjects/os/p1");
 const os_p2 = require("./subjects/os/p2");
 const os_p3 = require("./subjects/os/p3");
@@ -35,7 +33,15 @@ const fswd_dynamiclist = require("./subjects/fswd/dynamiclist");
 const fswd_geolocation = require("./subjects/fswd/geolocation");
 const fswd_localstorage = require("./subjects/fswd/localstorage");
 const fswd_uppercase = require("./subjects/fswd/uppercase");
-// Mount the routers on the corresponding base paths
+
+const fswd_date_me = require("./subjects/fswd/dateme");
+const fswd_dbms_me = require("./subjects/fswd/dbmsme");
+const fswd_dragdrop_me = require("./subjects/fswd/dragdropme");
+const fswd_dynamiclist_me = require("./subjects/fswd/dynamiclistme");
+const fswd_geolocation_me = require("./subjects/fswd/geolocationme");
+const fswd_localstorage_me = require("./subjects/fswd/localstorageme");
+const fswd_uppercase_me = require("./subjects/fswd/uppercaseme");
+
 app.use("/os/p1", os_p1);
 app.use("/os/p2", os_p2);
 app.use("/os/p3", os_p3);
@@ -68,6 +74,14 @@ app.use("/fswd/dynamiclist", fswd_dynamiclist);
 app.use("/fswd/geolocation", fswd_geolocation);
 app.use("/fswd/localstorage", fswd_localstorage);
 app.use("/fswd/uppercase", fswd_uppercase);
+
+app.use("/fswd/dateme", fswd_date_me);
+app.use("/fswd/dbmsme", fswd_dbms_me);
+app.use("/fswd/dragdropme", fswd_dragdrop_me);
+app.use("/fswd/dynamiclistme", fswd_dynamiclist_me);
+app.use("/fswd/geolocationme", fswd_geolocation_me);
+app.use("/fswd/localstorageme", fswd_localstorage_me);
+app.use("/fswd/uppercaseme", fswd_uppercase_me);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Express backend!");

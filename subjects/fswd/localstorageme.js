@@ -13,6 +13,73 @@ router.get("/", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Storage</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            font-size: 14px;
+            color: #444;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+            box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        li::before {
+            content: "💾 ";
+        }
+        .command{
+            transition: all 0.3s ease-in-out 0s;
+        }
+        .command:hover{
+            cursor: pointer;
+            background-color: #d3d3d3;
+            color: black;
+            transform: translateX(5px);
+        }
+    </style>
 </head>
 
 <body>

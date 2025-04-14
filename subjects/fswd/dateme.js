@@ -13,7 +13,47 @@ router.get("/", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Directive for Date and Time Formatting</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #e3f2fd;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #app {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            background-color: #6200ea;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(98, 0, 234, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        p:hover {
+            transform: scale(1.05);
+            background-color: #3700b3;
+        }
+    </style>
 </head>
 
 <body>

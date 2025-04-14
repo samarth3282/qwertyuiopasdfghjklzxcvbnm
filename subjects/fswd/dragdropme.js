@@ -12,6 +12,45 @@ router.get("/", (req, res) => {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag and Drop API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #draggable {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            border-radius: 10px;
+            margin: auto;
+        }
+
+        #dropzone {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #333;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        #dropzone.dragover {
+            border-color: green;
+            background-color: #e0ffe0;
+        }
+    </style>
 </head>
 
 <body>
