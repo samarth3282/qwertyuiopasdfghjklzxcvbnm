@@ -68,7 +68,7 @@ app.use("/fswd/dynamiclist", fswd_dynamiclist);
 app.use("/fswd/geolocation", fswd_geolocation);
 app.use("/fswd/localstorage", fswd_localstorage);
 app.use("/fswd/uppercase", fswd_uppercase);
-// Default route for testing
+
 app.get("/", (req, res) => {
   res.send("Welcome to the Express backend!");
 });
