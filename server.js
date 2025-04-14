@@ -28,6 +28,13 @@ const dc_p8 = require("./subjects/dc/p8");
 const dc_p9 = require("./subjects/dc/p9");
 const dc_p10 = require("./subjects/dc/p10");
 
+const fswd_date = require("./subjects/fswd/date");
+const fswd_dbms = require("./subjects/fswd/dbms");
+const fswd_dragdrop = require("./subjects/fswd/dragdrop");
+const fswd_dynamiclist = require("./subjects/fswd/dynamiclist");
+const fswd_geolocation = require("./subjects/fswd/geolocation");
+const fswd_localstorage = require("./subjects/fswd/localstorage");
+const fswd_uppercase = require("./subjects/fswd/uppercase");
 // Mount the routers on the corresponding base paths
 app.use("/os/p1", os_p1);
 app.use("/os/p2", os_p2);
@@ -54,6 +61,13 @@ app.use("/dc/p8", dc_p8);
 app.use("/dc/p9", dc_p9);
 app.use("/dc/p10", dc_p10);
 
+app.use("/fswd/date", fswd_date);
+app.use("/fswd/dbms", fswd_dbms);
+app.use("/fswd/dragdrop", fswd_dragdrop);
+app.use("/fswd/dynamiclist", fswd_dynamiclist);
+app.use("/fswd/geolocation", fswd_geolocation);
+app.use("/fswd/localstorage", fswd_localstorage);
+app.use("/fswd/uppercase", fswd_uppercase);
 // Default route for testing
 app.get("/", (req, res) => {
   res.send("Welcome to the Express backend!");
