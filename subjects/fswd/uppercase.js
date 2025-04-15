@@ -11,16 +11,13 @@ router.get("/", (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Directive Example</title>
+    <title>Uppercase Text</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 
 <body>
     <div id="app">
-        <p ref="text">Hello! This Text Can Change!</p>
-        <button @click="toUppercase"><strong>Uppercase</strong></button>
-        <button @click="toLowercase"><strong>Lowercase</strong></button>
-        <button @click="toOriginal"><strong>Original</strong></button>
+        <p>{{ uppercaseText }}</p>
     </div>
 
     <script>
@@ -29,15 +26,9 @@ router.get("/", (req, res) => {
             data: {
                 originalText: 'Hello! This Text Can Change!'
             },
-            methods: {
-                toUppercase() {
-                    this.$refs.text.innerText = this.$refs.text.innerText.toUpperCase();
-                },
-                toLowercase() {
-                    this.$refs.text.innerText = this.$refs.text.innerText.toLowerCase();
-                },
-                toOriginal() {
-                    this.$refs.text.innerText = this.originalText;
+            computed: {
+                uppercaseText() {
+                    return this.originalText.toUpperCase();
                 }
             }
         });
@@ -45,6 +36,7 @@ router.get("/", (req, res) => {
 </body>
 
 </html>
+
 `;
   res.json({ code: codeString });
 });

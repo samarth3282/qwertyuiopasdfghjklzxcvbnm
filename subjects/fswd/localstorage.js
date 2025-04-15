@@ -5,56 +5,47 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Storage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Local Storage Example</title>
+     <link rel="stylesheet" href="Storage.css">
+
+     <script>
+          function saveName() {
+               let name = document.getElementById("nameInput").value;
+               localStorage.setItem("username", name);
+               alert("Name saved!");
+          }
+
+          function showName() {
+               let storedName = localStorage.getItem("username");
+               if (storedName) {
+                    document.getElementById("display").innerText = "Saved Name: " + storedName;
+               } else {
+                    document.getElementById("display").innerText = "No name found!";
+               }
+          }
+
+          function removeName() {
+               localStorage.removeItem("username");
+               document.getElementById("display").innerText = "Name removed!";
+          }
+     </script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Control Your Local Storage With Console!</h1>
-        <p>Press <strong>F12</strong> to open DevTools. Then go to the console tab and execute these commands:</p>
-        <ul>
-            <li class="command">Storage.set("username", "JohnDoe");</li>
-            <li class="command">Storage.set("cart", { items: 3 });</li>
-            <li class="command">console.log(Storage.get("username"));</li>
-            <li class="command">Storage.remove("username");</li>
-            <li class="command">Storage.clear();</li>
-        </ul>
-    </div>
+     <div class="container">
 
-    <script>
-        const Storage = {
-            set: (key, value) => {
-                localStorage.setItem(key, JSON.stringify(value));
-            },
-
-            get: (key) => {
-                const data = localStorage.getItem(key);
-                return data ? JSON.parse(data) : null;
-            },
-
-            remove: (key) => {
-                localStorage.removeItem(key);
-            },
-
-            clear: () => {
-                localStorage.clear();
-            },
-        };
-
-        document.querySelectorAll(".command").forEach((item)=>{
-            item.addEventListener("click", ()=>{
-                const command = item.textContent.trim();
-                eval(command);
-            })
-        })
-    </script>
+          <input type="text" id="nameInput" placeholder="Enter your name">
+          <button onclick="saveName()">Save Name</button>
+          <button onclick="showName()">Show Name</button>
+          <button onclick="removeName()">Remove Name</button>
+          <p id="display"></p>
+     </div>
 </body>
 
 </html>

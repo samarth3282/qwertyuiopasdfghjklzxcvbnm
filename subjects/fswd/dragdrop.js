@@ -11,51 +11,59 @@ router.get("/", (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag and Drop API Demo</title>
+    <title>Simple Drag and Drop</title>
+    <style>
+        #draggable {
+            width: 100px;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            cursor: move;
+            margin-bottom: 10px;
+        }
+
+        #dropzone {
+            width: 200px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h2>Drag and Drop API Demo</h2>
+    <h2>Simple Drag and Drop</h2>
 
     <div id="draggable" draggable="true">Drag Me</div>
-
     <div id="dropzone">Drop Here</div>
 
     <script>
         const draggable = document.getElementById("draggable");
         const dropzone = document.getElementById("dropzone");
 
-        draggable.addEventListener("dragstart", (event) => {
-            event.dataTransfer.setData("text/plain", "This is a draggable item");
-            draggable.style.opacity = "0.5";
+        draggable.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text", "dragging");
         });
 
-        draggable.addEventListener("dragend", () => {
-            draggable.style.opacity = "1";
+        dropzone.addEventListener("dragover", (e) => {
+            e.preventDefault();
         });
 
-        dropzone.addEventListener("dragover", (event) => {
-            event.preventDefault();
-            dropzone.classList.add("dragover");
-        });
-
-        dropzone.addEventListener("dragleave", () => {
-            dropzone.classList.remove("dragover");
-            dropzone.removeChild(draggable);
-        });
-
-        dropzone.addEventListener("drop", (event) => {
-            event.preventDefault();
-            dropzone.classList.remove("dragover");
-            dropzone.textContent = "Dropped!";
+        dropzone.addEventListener("drop", (e) => {
+            e.preventDefault();
             dropzone.appendChild(draggable);
+            dropzone.textContent = "";
         });
     </script>
 
 </body>
 
 </html>
+
   `;
   res.json({ code: codeString });
 });
