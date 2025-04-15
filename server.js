@@ -34,6 +34,7 @@ const fswd_geolocation = require("./subjects/fswd/geolocation");
 const fswd_localstorage = require("./subjects/fswd/localstorage");
 const fswd_uppercase = require("./subjects/fswd/uppercase");
 const fswd_crud = require("./subjects/fswd/crud");
+const fswd_form = require("./subjects/fswd/form");
 
 const fswd_date_me = require("./subjects/fswd/dateme");
 const fswd_dbms_me = require("./subjects/fswd/dbmsme");
@@ -77,6 +78,7 @@ app.use("/fswd/geolocation", fswd_geolocation);
 app.use("/fswd/localstorage", fswd_localstorage);
 app.use("/fswd/uppercase", fswd_uppercase);
 app.use("/fswd/crud", fswd_crud);
+app.use("/fswd/form", fswd_form);
 
 app.use("/fswd/dateme", fswd_date_me);
 app.use("/fswd/dbmsme", fswd_dbms_me);
