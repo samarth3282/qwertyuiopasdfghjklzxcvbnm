@@ -45,6 +45,16 @@ const fswd_localstorage_me = require("./subjects/fswd/localstorageme");
 const fswd_uppercase_me = require("./subjects/fswd/uppercaseme");
 const fswd_crud_me = require("./subjects/fswd/crudme");
 
+const aiml_p2 = require("./subjects/aiml/p2");
+const aiml_p3 = require("./subjects/aiml/p3");
+const aiml_p4 = require("./subjects/aiml/p4");
+const aiml_p5 = require("./subjects/aiml/p5");
+const aiml_p6 = require("./subjects/aiml/p6");
+const aiml_p7 = require("./subjects/aiml/p7");
+const aiml_p8 = require("./subjects/aiml/p8");
+const aiml_p9 = require("./subjects/aiml/p9");
+const aiml_p10 = require("./subjects/aiml/p10");
+
 app.use("/os/p1", os_p1);
 app.use("/os/p2", os_p2);
 app.use("/os/p3", os_p3);
@@ -88,6 +98,16 @@ app.use("/fswd/geolocationme", fswd_geolocation_me);
 app.use("/fswd/localstorageme", fswd_localstorage_me);
 app.use("/fswd/uppercaseme", fswd_uppercase_me);
 app.use("/fswd/crudme", fswd_crud_me);
+
+app.use("/aiml/p2", aiml_p2);
+app.use("/aiml/p3", aiml_p3);
+app.use("/aiml/p4", aiml_p4);
+app.use("/aiml/p5", aiml_p5);
+app.use("/aiml/p6", aiml_p6);
+app.use("/aiml/p7", aiml_p7);
+app.use("/aiml/p8", aiml_p8);
+app.use("/aiml/p9", aiml_p9);
+app.use("/aiml/p10", aiml_p10);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Express backend!");
