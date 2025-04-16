@@ -25,6 +25,8 @@ const dc_p7 = require("./subjects/dc/p7");
 const dc_p8 = require("./subjects/dc/p8");
 const dc_p9 = require("./subjects/dc/p9");
 const dc_p10 = require("./subjects/dc/p10");
+const dc_tdm = require("./subjects/dc/tdm");
+const dc_parity = require("./subjects/dc/parity");
 
 const fswd_date = require("./subjects/fswd/date");
 const fswd_dbms = require("./subjects/fswd/dbms");
@@ -79,6 +81,8 @@ app.use("/dc/p7", dc_p7);
 app.use("/dc/p8", dc_p8);
 app.use("/dc/p9", dc_p9);
 app.use("/dc/p10", dc_p10);
+app.use("/dc/tdm", dc_tdm);
+app.use("/dc/parity", dc_parity);
 
 app.use("/fswd/date", fswd_date);
 app.use("/fswd/dbms", fswd_dbms);
