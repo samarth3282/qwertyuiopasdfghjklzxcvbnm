@@ -5,72 +5,69 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-  //MODULATION
-  fs = 10000;  
-t = 0:1/fs:0.1;
-fc = 1000;  
-Am = 1;  
-Ac = 1;  
-fm = 100;
-message = Am * sin(2 * %pi * fm * t);
+samplingFreq = 10000;          
+timeVector = 0:1/samplingFreq:0.1;  
+carrierFreq = 1000;                     
+carrierAmp = 1;                
+messageFreq = 100;             
+messageAmp = 1;       
 
+infoSignal = messageAmp * sin(2 * %pi * messageFreq * timeVector);
 
-am_signal = Ac * (1 + 0.5 * sin(2 * %pi * fm * t)) .* sin(2 * %pi * fc * t); 
+amModulated = carrierAmp * (1 + 0.5 * sin(2 * %pi * messageFreq * timeVector)) ...
+              .* sin(2 * %pi * carrierFreq * timeVector);
 
+kf = 75;
+fmModulated = carrierAmp * sin(2 * %pi * carrierFreq * timeVector + ...
+                  kf * cumsum(infoSignal)/samplingFreq);
 
-kf = 75; 
-fm_signal = Ac * sin(2 * %pi * fc * t + kf * cumsum(message)/fs);
-
- 
 kp = 1;
-pm_signal = Ac * sin(2 * %pi * fc * t + kp * message); 
+pmModulated = carrierAmp * sin(2 * %pi * carrierFreq * timeVector + kp * infoSignal);
 
-
-clf;
+clf; 
 subplot(3,1,1);
-plot(t, am_signal);
-title("Amplitude Modulation (AM)");
+plot(timeVector, amModulated);
+title("Amplitude Modulated Signal (AM)");
 xlabel("Time (s)");
 ylabel("Amplitude");
 
 subplot(3,1,2);
-plot(t, fm_signal);
-title("Frequency Modulation (FM)");
+plot(timeVector, fmModulated);
+title("Frequency Modulated Signal (FM)");
 xlabel("Time (s)");
 ylabel("Amplitude");
 
 subplot(3,1,3);
-plot(t, pm_signal);
-title("Phase Modulation (PM)");
+plot(timeVector, pmModulated);
+title("Phase Modulated Signal (PM)");
 xlabel("Time (s)");
 ylabel("Amplitude");
 
+frequencyAxis = linspace(-samplingFreq/2, samplingFreq/2, length(timeVector));
 
-f = linspace(-fs/2, fs/2, length(t));
-
-AM_spectrum = abs(fftshift(fft(am_signal))); 
-FM_spectrum = abs(fftshift(fft(fm_signal))); 
-PM_spectrum = abs(fftshift(fft(pm_signal))); 
-
+AM_Spectrum = abs(fftshift(fft(amModulated)));
+FM_Spectrum = abs(fftshift(fft(fmModulated)));
+PM_Spectrum = abs(fftshift(fft(pmModulated)));
 
 figure();
 subplot(3,1,1);
-plot(f, AM_spectrum);
-title("AM Spectrum");
+plot(frequencyAxis, AM_Spectrum);
+title("Spectrum of AM Signal");
 xlabel("Frequency (Hz)");
 ylabel("Magnitude");
 
 subplot(3,1,2);
-plot(f, FM_spectrum);
-title("FM Spectrum");
+plot(frequencyAxis, FM_Spectrum);
+title("Spectrum of FM Signal");
 xlabel("Frequency (Hz)");
 ylabel("Magnitude");
 
 subplot(3,1,3);
-plot(f, PM_spectrum);
-title("PM Spectrum");
+plot(frequencyAxis, PM_Spectrum);
+title("Spectrum of PM Signal");
 xlabel("Frequency (Hz)");
 ylabel("Magnitude");
+
 `;
   res.json({ code: codeString });
 });

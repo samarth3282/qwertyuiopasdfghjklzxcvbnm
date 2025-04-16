@@ -5,73 +5,80 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-
-  //QUANTIZZATION
-  theta = 2 * %pi;
-points = 100;
-freq = 1;
-amp = 1;
-time_vals = linspace(0, theta, points);
-signal = amp * sin(2 * %pi * freq * time_vals);
+theta = 2 * %pi;
+nPoints = 100;
+f = 1;
+A = 1;
+tVals = linspace(0, theta, nPoints);
+sineWave = A * sin(2 * %pi * f * tVals);
 subplot(411)
-plot(time_vals, signal);
-xlabel('Time');
+plot(tVals, sineWave);
+xlabel('Time');     
 ylabel('Amplitude');
 title('Original Sine Wave');
-sample_rate = freq * 2;
-index = 1;
-for j = 1:sample_rate:length(signal)
-    sampled_signal(index) = signal(j);
-    sampled_time(index) = time_vals(j);
-    index = index + 1;
+
+sampleRate = f * 2;
+sIndex = 1;
+for j = 1:sampleRate:length(sineWave)
+    sSignal(sIndex) = sineWave(j);
+    sTime(sIndex) = tVals(j);
+    sIndex = sIndex + 1;
 end
+
 subplot(412)
-plot2d3(sampled_time, sampled_signal);
+plot2d3(sTime, sSignal);
 xlabel('Time (Sampled)');
 ylabel('Amplitude');
 title('Downsampled Sine Wave');
-levels = 8;
-step_size = 2 * amp / levels;
-quantized_vals = zeros(1, length(sampled_signal));
-for j = 1:length(sampled_signal)
-    norm_val = sampled_signal(j) / step_size;
-    counter = 0;
-    for k = -levels/2:1:(levels/2)-1
-        if (norm_val >= k) & (norm_val < k + 1) then
-            quantized_vals(j) = counter;
+
+numLevels = 8;
+step = 2 * A / numLevels;
+qCodes = zeros(1, length(sSignal));
+for j = 1:length(sSignal)
+    normValue = sSignal(j) / step;
+    count = 0;
+    for k = -numLevels/2:(numLevels/2)-1
+        if (normValue >= k) & (normValue < k + 1) then
+            qCodes(j) = count;
         end
-        counter = counter + 1;
+        count = count + 1;
     end
 end
+
 disp("Quantized Code:");
-disp(quantized_vals);
-binary_vals = dec2bin(quantized_vals);
+disp(qCodes);
+
+binaryCodes = dec2bin(qCodes);
 disp("Binary Representation:");
-disp(binary_vals);
+disp(binaryCodes);
+
 subplot(413)
-quant_bits = 2;
-quant_levels = 2^quant_bits;
-quantized_x = round((signal + 1) * (quant_levels - 1) / 2);
-plot(time_vals, signal, time_vals, (quantized_x * 2 / (quant_levels - 1)) - 1);
+qBits = 3; 
+qLevels = 2^qBits;
+qSignal = round((sineWave + A) * (qLevels - 1) / (2 * A));
+quantizedWave = (qSignal * 2 * A / (qLevels - 1)) - A;
+plot(tVals, sineWave, 'b', tVals, quantizedWave, 'r');
 xlabel('Time');
 ylabel('Amplitude');
 title('Original and Quantized Sine Waves');
 legend('Original', 'Quantized');
-digital_out = [];
-pulse_rate = 2 * freq;
-for j = 1:pulse_rate
-    pulse_amp = level1(quantized_vals(j));
-    pulse_seq = ones(1, pulse_rate);
-    pulse_seq = pulse_seq * pulse_amp;
-    digital_out = [digital_out, pulse_seq];
+
+digitalSignal = [];
+pulseRate = 2 * f;
+for j = 1:pulseRate
+    
+    level1 = linspace(-1, 1, numLevels); 
+    pulseAmplitude = level1(qCodes(j));
+    pulseSeq = ones(1, pulseRate) * pulseAmplitude;
+    digitalSignal = [digitalSignal, pulseSeq];
 end
+
 subplot(414)
-plot(digital_out);
+plot(digitalSignal);
 xlabel('Time');
 ylabel('Amplitude');
 title('Digital Signal (Pulse Amplitude Modulation)');
-
-  `;
+`;
   res.json({ code: codeString });
 });
 
