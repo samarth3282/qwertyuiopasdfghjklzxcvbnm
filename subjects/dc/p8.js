@@ -106,6 +106,130 @@ xlabel('Sample Index');
 ylabel('Digital Signal Value');
 title('Demultiplexed Signal x3');
     
+
+
+
+
+
+//C++
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// ----------- Multiplexing Function -----------
+vector<int> mux(const vector<int>& x1, const vector<int>& x2, const vector<int>& x3) {
+    int maxLength = max({x1.size(), x2.size(), x3.size()});
+    vector<int> y(maxLength * 3, 0); // Initialize with zeros
+
+    for (int i = 0; i < maxLength; ++i) {
+        if (i < x1.size()) y[i * 3 + 0] = x1[i];  // 1st position
+        if (i < x2.size()) y[i * 3 + 1] = x2[i];  // 2nd position
+        if (i < x3.size()) y[i * 3 + 2] = x3[i];  // 3rd position
+    }
+    return y;
+}
+
+// ----------- Demultiplexing Function -----------
+void demux(const vector<int>& inputSignal, vector<int>& x1, vector<int>& x2, vector<int>& x3) {
+    int numBits = inputSignal.size() / 3;
+
+    x1.resize(numBits);
+    x2.resize(numBits);
+    x3.resize(numBits);
+
+    for (int i = 0; i < inputSignal.size(); ++i) {
+        int pos = i / 3;
+        if (i % 3 == 0) x1[pos] = inputSignal[i];
+        else if (i % 3 == 1) x2[pos] = inputSignal[i];
+        else if (i % 3 == 2) x3[pos] = inputSignal[i];
+    }
+}
+int main() {
+    vector<int> x1 = {1, 2};
+    vector<int> x2 = {10, 20};
+    vector<int> x3 = {100, 200};
+
+    // MUX
+    vector<int> combined = mux(x1, x2, x3);
+    cout << "Multiplexed Signal: ";
+    for (int val : combined) cout << val << " ";
+    cout << endl;
+
+    // DEMUX
+    vector<int> dx1, dx2, dx3;
+    demux(combined, dx1, dx2, dx3);
+
+    cout << "Demultiplexed x1: ";
+    for (int val : dx1) cout << val << " ";
+    cout << "\nDemultiplexed x2: ";
+    for (int val : dx2) cout << val << " ";
+    cout << "\nDemultiplexed x3: ";
+    for (int val : dx3) cout << val << " ";
+
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// ----------- Multiplexing Function -----------
+vector<int> mux(const vector<int>& x1, const vector<int>& x2, const vector<int>& x3) {
+    int maxLength = max({x1.size(), x2.size(), x3.size()});
+    vector<int> y(maxLength * 3, 0); // Initialize with zeros
+
+    for (int i = 0; i < maxLength; ++i) {
+        if (i < x1.size()) y[i * 3 + 0] = x1[i];  // 1st position
+        if (i < x2.size()) y[i * 3 + 1] = x2[i];  // 2nd position
+        if (i < x3.size()) y[i * 3 + 2] = x3[i];  // 3rd position
+    }
+    return y;
+}
+
+// ----------- Demultiplexing Function -----------
+void demux(const vector<int>& inputSignal, vector<int>& x1, vector<int>& x2, vector<int>& x3) {
+    int numBits = inputSignal.size() / 3;
+
+    x1.resize(numBits);
+    x2.resize(numBits);
+    x3.resize(numBits);
+
+    for (int i = 0; i < inputSignal.size(); ++i) {
+        int pos = i / 3;
+        if (i % 3 == 0) x1[pos] = inputSignal[i];
+        else if (i % 3 == 1) x2[pos] = inputSignal[i];
+        else if (i % 3 == 2) x3[pos] = inputSignal[i];
+    }
+}
+int main() {
+    vector<int> x1 = {1, 2};
+    vector<int> x2 = {10, 20};
+    vector<int> x3 = {100, 200};
+
+    // MUX
+    vector<int> combined = mux(x1, x2, x3);
+    cout << "Multiplexed Signal: ";
+    for (int val : combined) cout << val << " ";
+    cout << endl;
+
+    // DEMUX
+    vector<int> dx1, dx2, dx3;
+    demux(combined, dx1, dx2, dx3);
+
+    cout << "Demultiplexed x1: ";
+    for (int val : dx1) cout << val << " ";
+    cout << "\nDemultiplexed x2: ";
+    for (int val : dx2) cout << val << " ";
+    cout << "\nDemultiplexed x3: ";
+    for (int val : dx3) cout << val << " ";
+
+    return 0;
+}
   `;
   res.json({ code: codeString });
 });
