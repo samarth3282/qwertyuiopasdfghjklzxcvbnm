@@ -36,7 +36,7 @@ end
 
 // Plotting
 plot2d(time, ami_signal, style=2)
-xtitle("AMI (Alternate Mark Inversion) - Improved")
+xtitle("AMI (Alternate Mark Inversion)")
 xlabel("Time")
 ylabel("Amplitude")
 xgrid()
@@ -77,7 +77,7 @@ end
 
 // Plotting
 plot2d(time, pseudo_signal, style=3)
-xtitle("Pseudoternary Encoding - Improved")
+xtitle("Pseudoternary Encoding")
 xlabel("Time")
 ylabel("Amplitude")
 xgrid()

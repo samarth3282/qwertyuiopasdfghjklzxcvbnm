@@ -5,8 +5,8 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-  //MULTIPLEXING
-  function y=mux(x1, x2, x3)
+//MULTIPLEXING
+function y=mux(x1, x2, x3)
     maxLength = max([length(x1), length(x2), length(x3)]);
     y = zeros(1, maxLength * 3);
     
