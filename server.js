@@ -15,12 +15,6 @@ const roundrobin = require("./subjects/os/roundrobin");
 const srtf = require("./subjects/os/srtf");
 const sjf = require("./subjects/os/sjf");
 
-const dc_p1 = require("./subjects/dc/p1");
-// const dc_p1_me = require("./subjects/dc/p1me");
-const dc_p2 = require("./subjects/dc/p2");
-// const dc_p2_me = require("./subjects/dc/p2me");
-const dc_p3 = require("./subjects/dc/p3");
-// const dc_p3_me = require("./subjects/dc/p3me");
 const dc_p4 = require("./subjects/dc/p4");
 const dc_p4_me = require("./subjects/dc/p4me");
 const dc_p5 = require("./subjects/dc/p5");
