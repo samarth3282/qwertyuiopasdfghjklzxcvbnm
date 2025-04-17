@@ -5,7 +5,7 @@ const router = express.Router();
 // GET /os/p1
 router.get("/", (req, res) => {
   const codeString = `
-  //HAMMINGCODE
+//HAMMINGCODE VARIABLE
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -115,6 +115,76 @@ int main() {
         cout << i << " ";
     }
     cout << endl;
+
+    return 0;
+}
+
+
+
+
+//HAMMINGCODE HARDCODED
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int d1, d2, d3, d4;
+    cout << "Enter 4 data bits (d1 d2 d3 d4): ";
+    cin >> d1 >> d2 >> d3 >> d4;
+
+    // Calculate parity bits
+    int p1 = d1 ^ d2 ^ d4;
+    int p2 = d1 ^ d3 ^ d4;
+    int p4 = d2 ^ d3 ^ d4;
+
+    // Create hamming code
+    vector<int> hamming(7);
+    hamming[0] = p1;
+    hamming[1] = p2;
+    hamming[2] = d1;
+    hamming[3] = p4;
+    hamming[4] = d2;
+    hamming[5] = d3;
+    hamming[6] = d4;
+
+    cout << "Encoded Hamming (7,4) code: ";
+    for (int bit : hamming)
+        cout << bit << " ";
+    cout << endl;
+
+    // Simulate error
+    int errorPos;
+    cout << "Enter bit position to flip (1-7), 0 for no error: ";
+    cin >> errorPos;
+    if (errorPos > 0 && errorPos <= 7) {
+        hamming[errorPos - 1] ^= 1;
+        cout << "Received bits with error: ";
+        for (int bit : hamming)
+            cout << bit << " ";
+        cout << endl;
+    }
+
+    // Error detection
+    int c1 = hamming[0] ^ hamming[2] ^ hamming[4] ^ hamming[6];
+    int c2 = hamming[1] ^ hamming[2] ^ hamming[5] ^ hamming[6];
+    int c4 = hamming[3] ^ hamming[4] ^ hamming[5] ^ hamming[6];
+
+    int syndrome = c4 * 4 + c2 * 2 + c1;
+    if (syndrome == 0) {
+        cout << "No error detected." << endl;
+    } else {
+        cout << "Error detected at position: " << syndrome << endl;
+        hamming[syndrome - 1] ^= 1;
+        cout << "Corrected Hamming code: ";
+        for (int bit : hamming)
+            cout << bit << " ";
+        cout << endl;
+    }
+
+    // Extract original data bits (d1, d2, d3, d4)
+    cout << "Decoded data bits: ";
+    cout << hamming[2] << " " << hamming[4] << " " << hamming[5] << " " << hamming[6] << endl;
 
     return 0;
 }
