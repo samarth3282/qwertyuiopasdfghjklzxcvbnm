@@ -83,9 +83,6 @@ app.use("/os/roundrobin", roundrobin);
 app.use("/os/srtf", srtf);
 app.use("/os/sjf", sjf);
 
-app.use("/dc/p1", dc_p1);
-app.use("/dc/p2", dc_p2);
-app.use("/dc/p3", dc_p3);
 app.use("/dc/p4", dc_p4);
 app.use("/dc/p5", dc_p5);
 app.use("/dc/p6", dc_p6);
@@ -93,6 +90,11 @@ app.use("/dc/p7", dc_p7);
 app.use("/dc/p8", dc_p8);
 app.use("/dc/p9", dc_p9);
 app.use("/dc/p10", dc_p10);
+app.use("/dc/parity", dc_parity);
+app.use("/dc/scrambling", dc_scrambling);
+app.use("/dc/askfsk", dc_askfsk);
+app.use("/dc/tdm", dc_tdm);
+
 // app.use("/dc/p1me", dc_p1_me);
 // app.use("/dc/p2me", dc_p2_me);
 // app.use("/dc/p3me", dc_p3_me);
@@ -103,10 +105,6 @@ app.use("/dc/p7me", dc_p7_me);
 app.use("/dc/p8me", dc_p8_me);
 app.use("/dc/p9me", dc_p9_me);
 app.use("/dc/p10me", dc_p10_me);
-app.use("/dc/tdm", dc_tdm);
-app.use("/dc/parity", dc_parity);
-app.use("/dc/scrambling", dc_scrambling);
-app.use("/dc/askfsk", dc_askfsk);
 
 app.use("/fswd/date", fswd_date);
 app.use("/fswd/dbms", fswd_dbms);
