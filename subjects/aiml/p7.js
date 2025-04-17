@@ -6,14 +6,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   const codeString = `
 # %% [markdown]
-# Name: Yashvi Jain
-# 
-# Roll No: 24BEE40
-# 
-# Practical No: 7
-# 
-# Aim: Write a program for predicting selling price of houses in Boston dataset using a KNN
-# Regressor. Implement MAE, MSE, RMSE, and MAPE.
+# Write a program for predicting selling price of houses in Boston dataset using a KNN Regressor. Implement MAE, MSE, RMSE, and MAPE.
 
 # %%
 import pandas as pd
@@ -23,6 +16,7 @@ from sklearn.model_selection import train_test_split
 # read the data
 data = pd.read_csv("BostonHousing.csv", header='infer').values
 
+# %%
 # seperating input and target/output part of the data
 X=data[:,0:-1]
 y=data[:,-1]
@@ -35,6 +29,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_split)
 dist=np.zeros(shape=X_test.shape[0])
 pred=np.zeros(shape=X_test.shape[0])
 
+# %%
+dist=np.zeros(shape=X_test.shape[0])
+pred=np.zeros(shape=X_test.shape[0])
+
+# %%
 # ask the user about number of nearest neighbours to be used, i.e. k
 k=int(input("Enter the number of nearest neighbours to be used: "))
 for i in range(X_test.shape[0]):
@@ -47,20 +46,30 @@ for i in range(X_test.shape[0]):
 
 print(pred)
 
-# user defined function to calculate MAE
+# %%
+import numpy as np
+
+# User-defined function to calculate MAE
 def MAE(pred, y_test):
-    return np.mean(np.abs(pred-y_test))
+    return np.mean(np.abs(pred - y_test))
 
-# user defined function to calculate RMSE
+# User-defined function to calculate RMSE
 def RMSE(pred, y_test):
-    return np.sqrt(np.mean((pred-y_test)**2))
+    return np.sqrt(np.mean((pred - y_test) ** 2))
 
-# user defined function to calculate MAPE
+# User-defined function to calculate MAPE
 def MAPE(pred, y_test):
-    return np.mean(np.abs((pred-y_test)/y_test))
-print("MAE",MAE)
-print("RMSE",RMSE)
-print("MAPE",MAPE)
+    return np.mean(np.abs((pred - y_test) / y_test))
+
+# Example data
+pred = np.array([2.5, 0.0, 2.0, 8.0])  # Replace with your actual predicted values
+y_test = np.array([3.0, -0.5, 2.0, 7.0])  # Replace with your actual test values
+
+# Calculate and print the error metrics
+print("MAE:", MAE(pred, y_test))
+print("RMSE:", RMSE(pred, y_test))
+print("MAPE:", MAPE(pred, y_test))
+
 
 
 
