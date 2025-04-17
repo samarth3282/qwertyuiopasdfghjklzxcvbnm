@@ -33,6 +33,7 @@ const dc_tdm = require("./subjects/dc/tdm");
 const dc_parity = require("./subjects/dc/parity");
 const dc_scrambling = require("./subjects/dc/scrambling");
 const dc_askfsk = require("./subjects/dc/askfsk");
+const dc_checksum = require("./subjects/dc/checksum");
 
 const fswd_date = require("./subjects/fswd/date");
 const fswd_dbms = require("./subjects/fswd/dbms");
@@ -88,6 +89,7 @@ app.use("/dc/parity", dc_parity);
 app.use("/dc/scrambling", dc_scrambling);
 app.use("/dc/askfsk", dc_askfsk);
 app.use("/dc/tdm", dc_tdm);
+app.use("/dc/checksum", dc_checksum);
 
 // app.use("/dc/p1me", dc_p1_me);
 // app.use("/dc/p2me", dc_p2_me);
